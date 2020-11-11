@@ -14,9 +14,12 @@ class PostsSeederTable extends Seeder
     {
         $faker = Faker::create();
         for($i = 0; $i < 100; $i++) {
+            $heading = $faker->sentence($nbWords = 6, $variableNbWords = true);
             DB::table('posts')->insert([
                 'user_id' => rand(1,100),
-                'comment' => $faker->text(20),
+                'post_heading' => $heading,
+                'post_slug' => Str::slug($heading),
+                'post_body' => $faker->text(1000),
                 'created_at' => $faker->dateTimeThisDecade($max = 'now', 'UTC'),
                 'updated_at' => $faker->dateTimeThisDecade($max = 'now', 'UTC'),
             ]);

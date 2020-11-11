@@ -14,12 +14,10 @@ class CommentsSeederTable extends Seeder
     {
         $faker = Faker::create();
         for($i = 0; $i < 100; $i++) {
-            $heading = $faker->sentence($nbWords = 6, $variableNbWords = true);
             DB::table('comments')->insert([
                 'user_id' => rand(1,100),
-                'post_heading' => $heading,
-                'post_slug' => Str::slug($heading),
-                'post_body' => $faker->text(1000),
+                'post_id' => rand(1,100),
+                'comment' => $faker->text(20),
                 'created_at' => $faker->dateTimeThisDecade($max = 'now', 'UTC'),
                 'updated_at' => $faker->dateTimeThisDecade($max = 'now', 'UTC'),
             ]);
